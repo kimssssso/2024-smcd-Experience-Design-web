@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Page</title>
+  <style>
+    body {
+      background: black;
+    }
+    /* 기본 폰트와 정렬 */
+    * {box-sizing: border-box}
+    body {font-family: Verdana, sans-serif; margin:0}
+    .mySlides {display: none}
+    img {vertical-align: middle;}
+
+    /* 슬라이드쇼 */
+    .slideshow {
+      max-width: 500px;
+      position: relative;
+      margin: auto;
+    }
+
+    /* 왼쪽 버튼 배치 */
+    .prev {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    /* 오른쪽 버튼 배치 */
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 3px 0 0 3px;
+      user-select: none;
+      right: 0;
+    }
+
+    /* 왼쪽, 오른쪽 버튼에 호버링할때 색 변경 */
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    
+    /* 사진 위의 텍스트 */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* 사진 아래의 원모양 */
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+    
+    /* 호버링할때 색 변경 */
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+
+    /* Fading 애니메이션 */
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="text-align: center">
+      <h1 style="color: white">제목</h1>
+    </div>
+  </header>
+  <main>
+    <div class="slideshow">
+      <div class="mySlides fade">
+        <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202302/11/9e7dd875-5cd0-4776-9ca8-264c6fdb440a.jpg" style="width:100%">
+        <div class="text">산 사진1</div>
+      </div>
+      
+      <div class="mySlides fade">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/%EC%84%A4%ED%99%94%EC%82%B0.jpg" style="width:100%">
+        <div class="text">산 사진2</div>
+      </div>
+      
+      <div class="mySlides fade">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Mount_Gyeryong_from_Jang-gun_peak.jpg" style="width:100%">
+        <div class="text">산 사진3</div>
+      </div>
+      
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+    
+    <div style="text-align:center">
+      <span class="dot" onclick="setSlides(1)"></span> 
+      <span class="dot" onclick="setSlides(2)"></span> 
+      <span class="dot" onclick="setSlides(3)"></span> 
+    </div>
+  </main>
+</body>
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function setSlides(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+  }
+</script>
+</html>
